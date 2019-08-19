@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "5d61b1d5-d299-45a1-996f-b40e6a3ac5f2",
+		"name": "sb2-rest-tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Simple test",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"asdadsasd\",\n\t\"name\": \"Marco\",\n\t\"surname\": \"Capo\",\n\t\"initDate\": \"2019-03-05T18:25:43.511Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/validate/promo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"validate",
+						"promo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "55dc52a7-472c-4990-9909-919f9507b3e6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a277cb2f-fc1c-4662-bbff-63edc3efb7ed",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

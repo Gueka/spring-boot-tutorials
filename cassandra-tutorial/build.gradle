@@ -1,0 +1,41 @@
+buildscript {
+    ext {
+        junitVersion = '5.3.2'
+		cassandraUnit = '2.1.9.2'
+    }
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.1.5.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'net.gueka'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "org.cassandraunit:cassandra-unit-spring:${cassandraUnit}"
+	testImplementation "org.cassandraunit:cassandra-unit-shaded:${cassandraUnit}"
+	testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+	
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+}
