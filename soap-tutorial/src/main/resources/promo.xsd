@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.gueka.net/promo/schema"
+           targetNamespace="http://www.gueka.net/promo/schema" elementFormDefault="qualified">
+
+    <xs:element name="promotionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="data" type="tns:data"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="promotionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="offers" maxOccurs="unbounded" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+  
+    <xs:complexType name="data">
+        <xs:sequence>
+            <xs:element name="userId" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="surname" type="xs:string"/>
+            <xs:element name="initDate" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

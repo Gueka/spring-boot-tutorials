@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "8c737f17-98ae-46e4-a0d5-d9f2602f9f6a",
+		"name": "spring-boot-docker-tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Simple test",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d5677611-3b95-4b9a-9bb4-add072038ea1",
+						"exec": [
+							"value = new Date();",
+							"",
+							"console.log(value);",
+							"pm.globals.set(\"yesterday\", value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n\txmlns:tns=\"http://www.gueka.net/promo/schema\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tns:promotionRequest>\n         <tns:data>\n         \t<tns:userId>007</tns:userId>\n         \t<tns:initDate>{{yesterday}}</tns:initDate>\n         </tns:data>\n      </tns:promotionRequest>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://localhost:8080/ws",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ws"
+					]
+				},
+				"description": "yesterday variable is generated with current date in the Pre-req tab."
+			},
+			"response": []
+		}
+	]
+}
