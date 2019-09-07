@@ -1,9 +1,12 @@
 HELP.md
 .gradle
-build/
+/build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+bin
+gradle
+gradlew
+gradlew.bat
+settings.gradle
 
 ### STS ###
 .apt_generated
@@ -19,7 +22,7 @@ build/
 *.iws
 *.iml
 *.ipr
-out/
+/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -30,10 +33,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-bin/*
-
-gradlew
-gradle/*
-
-.attach_*

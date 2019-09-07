@@ -15,6 +15,7 @@ public class Weather {
 
 
     private Coord coord;
+    @Builder.Default
     private List<WeatherView> weather = null;
     private String base;
     private Main main;
