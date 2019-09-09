@@ -70,7 +70,7 @@ public class OfferServiceTest {
         List<String> offers = service.getOffers(data);
         
         // Then
-        String message = OfferService.NEW_YEAR_MEMBER_DISCOUNT_MESSAGE;
+        String message = OfferServiceMock.NEW_YEAR_MEMBER_DISCOUNT_MESSAGE;
         assertTrue("Has to return at leas a message", offers.size() > 0);
         assertEquals("Has to return first message as " + message, message, offers.get(0));
         assertEquals("Has only 1 message", 1, offers.size());

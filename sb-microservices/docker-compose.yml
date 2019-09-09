@@ -10,8 +10,8 @@ services:
     ports: 
     - "80:80"
     networks:
-        - localnet
-        - usernet
+      - localnet
+      - usernet
 
   entrypoint:
     build:
@@ -20,8 +20,6 @@ services:
     environment:
       - USER_URL=http://user:8080
       - VALIDATOR_URL=http://rules:8080
-    expose:
-      - "8080"
     networks:
       - localnet
       - usernet
@@ -30,8 +28,6 @@ services:
     build:
       context: ../sb2-rest-tutorial
       dockerfile: Dockerfile
-    expose:
-      - "8080"
     networks:
       - localnet
 
@@ -39,8 +35,6 @@ services:
     build:
       context: ../sb2-weather-tutorial
       dockerfile: Dockerfile
-    expose:
-      - "8080"
     environment:
       - WEATHER_APPID=${WEATHER_APPID}
     networks:
@@ -54,8 +48,13 @@ services:
       - CONTACT_POINTS=cassandradb
     depends_on:
       - cassandradb
-    expose:
-      - "8080"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     networks:
       - database
       - usernet
@@ -64,8 +63,6 @@ services:
     image: datastax/dse-server
     environment:
       - DS_LICENSE=accept
-    ports:
-      - 9042:9042
     networks:
       - database
 

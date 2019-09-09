@@ -1,0 +1,12 @@
+/bin
+/build
+/gradle
+
+.classpath
+.gradle
+.project
+.settings
+.vscode
+
+.attach_*
+target/

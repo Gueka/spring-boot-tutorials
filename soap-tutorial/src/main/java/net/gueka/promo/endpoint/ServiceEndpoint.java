@@ -28,7 +28,8 @@ public class ServiceEndpoint {
 	@ResponsePayload
 	public PromotionResponse getOffers(@RequestPayload PromotionRequest request) {
 		log.info("A message just arrive with userId: " + request.getData().getUserId());
-		return generateResponse(service.getOffers(request.getData()));
+		List<String> offers = service.getOffers(request.getData());
+		return generateResponse(offers);
 	}
 
 	private PromotionResponse generateResponse(List<String> offers) {
