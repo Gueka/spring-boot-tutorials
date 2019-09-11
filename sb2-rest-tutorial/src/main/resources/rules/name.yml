@@ -1,0 +1,14 @@
+---
+name: It's a genius
+description: Great names comes with great intelect (?)
+priority: 1
+condition: "\"marco\".equals(name.toLowerCaser().trim())"
+actions:
+  - "messages.add(\"God damn it, Marco! You're a god damn genius! This is the most outstanding name I have ever heard. You must have a goddamn I.Q. of 160. You are goddamn gifted, Private Marco.\")"
+---
+name: I'm Batman
+description: Looks like batman
+priority: 2
+condition: "name == 'bruce'"
+actions:
+  - "messages.add(\"You either die a hero, or live long enough to see yourself became a villain.\");"

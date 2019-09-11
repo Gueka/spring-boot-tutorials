@@ -2,6 +2,8 @@ package net.gueka.promo.model.weather;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,21 +13,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather {
 
-
-    private Coord coord;
     @Builder.Default
     private List<WeatherView> weather = null;
-    private String base;
     private Main main;
-    private Integer visibility;
-    private Wind wind;
-    private Clouds clouds;
-    private Integer dt;
-    private Sys sys;
     private Integer id;
     private String name;
-    private Integer cod;
 
 }

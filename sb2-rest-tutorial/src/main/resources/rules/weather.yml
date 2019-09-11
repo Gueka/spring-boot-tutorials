@@ -1,0 +1,7 @@
+---
+name: Raining
+description: Detects if its raining
+priority: 1
+condition: "\"marco\".equals(name.toLowerCaser().trim())"
+actions:
+  - "messages.add(\"It's raining outside, take an umbrella.\")"

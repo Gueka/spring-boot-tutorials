@@ -27,7 +27,8 @@ repositories {
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-web-services"
-	implementation "org.jeasy:easy-rules-core:3.2.0"
+	implementation "org.jeasy:easy-rules-core:3.3.0"
+	implementation "org.jeasy:easy-rules-mvel:3.3.0"
 
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"

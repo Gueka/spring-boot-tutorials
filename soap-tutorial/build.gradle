@@ -51,7 +51,8 @@ task genJaxb {
 
             javac(destdir: classesDir, source: 1.6, target: 1.6, debug: true,
                     debugLevel: "lines,vars,source",
-                    classpath: configurations.jaxb.asPath) {
+                    classpath: configurations.jaxb.asPath,
+                    includeantruntime: "false") {
                 src(path: sourcesDir)
                 include(name: "**/*.java")
                 include(name: "*.java")
