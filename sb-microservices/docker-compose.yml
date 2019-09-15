@@ -14,6 +14,7 @@ services:
       - usernet
 
   entrypoint:
+    image: gueka/tutorial:sb2-soap
     build:
       context: ../soap-tutorial
       dockerfile: Dockerfile
@@ -25,6 +26,7 @@ services:
       - usernet
 
   rules:
+    image: gueka/tutorial:sb2-rest
     build:
       context: ../sb2-rest-tutorial
       dockerfile: Dockerfile
@@ -32,6 +34,7 @@ services:
       - localnet
 
   weather:
+    image: gueka/tutorial:sb2-weather
     build:
       context: ../sb2-weather-tutorial
       dockerfile: Dockerfile
@@ -41,6 +44,7 @@ services:
       - localnet
 
   user:
+    image: gueka/tutorial:sb2-cassandra
     build:
       context: ../sb2-cassandra-tutorial
       dockerfile: Dockerfile
@@ -56,20 +60,21 @@ services:
         max_attempts: 3
         window: 120s
     networks:
-      - database
       - usernet
+      - databasenet
 
   cassandradb:
     image: datastax/dse-server
     environment:
       - DS_LICENSE=accept
     networks:
-      - database
+      - databasenet
 
 networks:
-    database:
-      driver: bridge
-    usernet:
-      driver: bridge
-    localnet:
-      driver: bridge
+  databasenet:
+    driver: overlay
+    external: false
+  usernet:
+    driver: overlay
+  localnet:
+    driver: overlay
