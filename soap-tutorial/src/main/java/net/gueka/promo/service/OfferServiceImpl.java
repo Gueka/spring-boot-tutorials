@@ -81,7 +81,7 @@ public class OfferServiceImpl implements OfferService {
         ResponseEntity<UserInfo> response = template.exchange(
                 userURL + "?id=" + data.getUserId(),
 				HttpMethod.GET, null, new ParameterizedTypeReference<UserInfo>() {});
-                
+        log.info("Response received. User id: {}", response.getBody().getId());
         return response.getBody();
     }
     
