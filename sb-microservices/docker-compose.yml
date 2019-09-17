@@ -4,27 +4,31 @@ services:
   nginx:
     image: nginx
     volumes:
-    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-    - rules
+      - rules
+      - user
     ports: 
-    - "80:80"
+      - "80:80"
     networks:
       - localnet
       - usernet
 
   entrypoint:
+    image: gueka/tutorial:sb2-soap
     build:
       context: ../soap-tutorial
       dockerfile: Dockerfile
     environment:
-      - USER_URL=http://user:8080
+      - USER_URL=http://user:8082
       - VALIDATOR_URL=http://rules:8080
+      - WEATHER_URL=http://weather:8084
     networks:
       - localnet
       - usernet
 
   rules:
+    image: gueka/tutorial:sb2-rest
     build:
       context: ../sb2-rest-tutorial
       dockerfile: Dockerfile
@@ -32,6 +36,7 @@ services:
       - localnet
 
   weather:
+    image: gueka/tutorial:sb2-weather
     build:
       context: ../sb2-weather-tutorial
       dockerfile: Dockerfile
@@ -41,6 +46,7 @@ services:
       - localnet
 
   user:
+    image: gueka/tutorial:sb2-cassandra
     build:
       context: ../sb2-cassandra-tutorial
       dockerfile: Dockerfile
@@ -49,27 +55,28 @@ services:
     depends_on:
       - cassandradb
     deploy:
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
         window: 120s
     networks:
-      - database
       - usernet
+      - databasenet
 
   cassandradb:
     image: datastax/dse-server
     environment:
       - DS_LICENSE=accept
     networks:
-      - database
+      - databasenet
 
 networks:
-    database:
-      driver: bridge
-    usernet:
-      driver: bridge
-    localnet:
-      driver: bridge
+  databasenet:
+    driver: overlay
+    external: false
+  usernet:
+    driver: overlay
+  localnet:
+    driver: overlay
