@@ -1,7 +1,28 @@
 ---
-name: Raining
-description: Detects if its raining
+name: Rain
+description: Detects if its Thunderstorm (code 200 to 300), Drizzle (300 to 400), Rain (400 to 500)
 priority: 1
-condition: "\"marco\".equals(name.toLowerCaser().trim())"
+condition: "weather.id >= 200 && weather.id < 500"
 actions:
   - "messages.add(\"It's raining outside, take an umbrella.\")"
+---
+name: Snow
+description: Detects if its raining
+priority: 1
+condition: "weather.id >= 600 && weather.id < 700"
+actions:
+  - "messages.add(\"It's cold outside. Keep you warm.\")"
+---
+name: Clear
+description: Clear outside
+priority: 1
+condition: "weather.id == 800"
+actions:
+  - "messages.add(\"Such a nice day.\")"
+---
+name: Clouds
+description: Cloudy day
+priority: 1
+condition: "weather.id > 800"
+actions:
+  - "messages.add(\"It's a cloudy day.\")"

@@ -16,7 +16,7 @@ import net.gueka.rules.definition.YearRule;
 @Configuration
 public class Config {
     
-    @Bean
+    @Bean("dateRules")
     public Rules dateRules(){
         Rules rules = new Rules();
         rules.register(new YearRule());
@@ -24,14 +24,14 @@ public class Config {
         return rules;
     }
 
-    @Bean
+    @Bean("nameRules")
     public Rules nameRules() throws Exception {
         MVELRuleFactory ruleFactory = new MVELRuleFactory(new YamlRuleDefinitionReader());
         InputStream resource = new ClassPathResource("rules/name.yml").getInputStream();
         return ruleFactory.createRules(new InputStreamReader(resource));
     }
 
-    @Bean
+    @Bean("weatherRules")
     public Rules weatherRules() throws Exception {
         MVELRuleFactory ruleFactory = new MVELRuleFactory(new YamlRuleDefinitionReader());
         InputStream resource = new ClassPathResource("rules/weather.yml").getInputStream();

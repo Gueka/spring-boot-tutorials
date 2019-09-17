@@ -7,8 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import net.gueka.promo.model.weather.Weather;
+import net.gueka.promo.model.weather.WeatherView;
 
 @Builder
 @Data
@@ -20,5 +19,5 @@ public class ValidatorUser {
     String surname;
     Date initDate;
     Calendar calendarDate;
-    Weather currentWeather;
+    WeatherView currentWeather;
 }

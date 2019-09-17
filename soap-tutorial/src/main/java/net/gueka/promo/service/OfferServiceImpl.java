@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import net.gueka.promo.model.Location;
 import net.gueka.promo.model.UserInfo;
 import net.gueka.promo.model.validator.ValidatorUser;
 import net.gueka.promo.model.weather.Weather;
+import net.gueka.promo.model.weather.WeatherView;
 import net.gueka.promo.schema.Data;
 
 @Slf4j
@@ -47,7 +49,10 @@ public class OfferServiceImpl implements OfferService {
     private ValidatorUser getValidatorUser(UserInfo user) {
         return ValidatorUser.builder()
             .surname(user.getSurname())
-            .currentWeather(user.getCurrentWeather())
+            .currentWeather(
+                CollectionUtils.isEmpty(user.getCurrentWeather().getWeather()) ? 
+                new WeatherView() : 
+                user.getCurrentWeather().getWeather().get(0) )
             .name(user.getName())
             .userId(user.getId().toString())
             .initDate(user.getInitDate())

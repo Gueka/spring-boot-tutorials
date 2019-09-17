@@ -2,7 +2,7 @@
 name: It's a genius
 description: Great names comes with great intelect (?)
 priority: 1
-condition: "\"marco\".equals(name.toLowerCaser().trim())"
+condition: "\"marco\".equals(name.toLowerCase().trim())"
 actions:
   - "messages.add(\"God damn it, Marco! You're a god damn genius! This is the most outstanding name I have ever heard. You must have a goddamn I.Q. of 160. You are goddamn gifted, Private Marco.\")"
 ---
